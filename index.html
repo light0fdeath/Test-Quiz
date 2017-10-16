@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Answer</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<style>
+
+	.firstq{
+		height:70px;
+		width:100px;
+		border:1px solid black;
+		text-align: center;
+	}
+	.disabled{
+		height:70px;
+		width:100px;
+		border:1px solid black;
+		text-align: center;
+		cursor:pointer;
+	}
+	.wrongg{
+		border:1px solid red !important;
+	}
+	.rightt{
+		border:1px solid green !important;
+	}
+	.feedback{
+		float:right;
+		height:200px;
+		width:300px;
+		border:2px solid blue;
+	}
+	.feedback1{
+		display:none;
+	}
+</style>
+</head>
+<body>
+
+	<div class="firstq"><h2>Select</h2>
+	</div>
+	<br>
+	<br>
+	<p></p>
+	<p></p>
+	<div id ="wronga" class="firsta disabled">
+		<h2>Right</h2>
+	</div>
+	<br>
+	<br>
+	<div id="correcta" class="second disabled">
+		<h2>Wrong</h2>
+	</div>
+
+	<div class="feedback feedback1">Hello How are you</div>
+
+</body>
+
+
+<script>
+$(document).ready(function(){
+	count = 0;
+	if(count < 1){
+    $("#wronga").click(function(){
+        $("#wronga").addClass("wrongg");
+        $(".feedback1").show();
+        
+        count = 1 ;
+    });
+}
+    console.log(count);
+
+	if(count < 1){
+    $("#correcta").click(function(){
+        $("#correcta").addClass("rightt");
+        $(".feedback1").hide();
+        count = 1 ;
+    });
+}
+});
+</script>
+
+</html>
