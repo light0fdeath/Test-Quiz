@@ -1,351 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8">
-<title>Abb animate</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>  
-<style type="text/css">
-body{
-    margin:auto;
-}
-    .appanswer .common-box{
-        width: 0px;
-        height:90px;
-        padding: 0px;
-        overflow: hidden;
-        margin-left: 135px;
-        margin-top:0px;
-        padding-left: 0px;
-        border:1px solid grey;
-        border-top-left-radius: 0px;
-        border-bottom-left-radius: 0px;
-        border-radius: 40px;
-        border-left:0px;
-        position:absolute;
+	<title>Test</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>  
 
-    }
-    .appanswer .common-right{
-        height:90px;
+	<style>
+		.appanswer .common-ques{
+        height:100px;
         width:190px;
         padding-top:0px;
         color:white;
+        text-align:center;
         background-color: grey;
         border-radius: 40px;
-        margin-top:0px;
-        
-    }
-     .appanswer .response-default{
-        height:90px;
-        width:190px;
-        padding-top:0px;
-        color:white;
-        background-color: grey;
-        border-radius: 40px;
-        margin-top:0px;
-        margin-top: 70px;
-        margin-bottom: -70px;
-        margin-left:10%;
+        margin:10px 0px 0px 10px;
 
     }
-
-    .appanswer .res-cursor{
-    cursor: pointer; 
-    }
-    .appanswer .cleardiv{
-        margin-top: 30px;
-        margin-bottom: 30px;
-    }
-
-
-    .appanswer .popup{
-        left:400px;
-        bottom:200px;
-        background-color: red;
-        color:white;
-        border-radius:10px;
-        cursor:pointer;
-    }
-
-
-    h3{
-        text-align: center;
-    }
-
-@-webkit-keyframes wiggle
-{
-    0% {-webkit-transform: rotateZ(2deg);}
-    50% {-webkit-transform: rotateZ(-2deg);}
-    100% {-webkit-transform: rotateZ(2deg);}
-}
-@-moz-keyframes wiggle
-{
-    0% {-moz-transform: rotateZ(2deg);}
-    50% {-moz-transform: rotateZ(-2deg);}
-    100% {-moz-transform: rotateZ(2deg);}
-}
-@-o-keyframes wiggle
-{
-    0% {-o-transform: rotateZ(2deg);}
-    50% {-o-transform: rotateZ(-2deg);}
-    100% {-o-transform: rotateZ(2deg);}
-}
-@keyframes wiggle
-{
-    0% {transform: rotateZ(2deg);}
-    50% {transform: rotateZ(-2deg);}
-    100% {transform: rotateZ(2deg);}
-}
-
-
-.appanswer .shake{
-    -webkit-animation: wiggle 0.2s ease infinite;
-    -moz-animation: wiggle 0.2s ease infinite;
-    -o-animation: wiggle 0.2s ease infinite;
-    animation: wiggle 0.2s ease infinite;
-}
-
-</style>
-
-
-
+	</style>
 </head>
 <body>
 
-<br>
-<br>
+	<div class="appanswer">
 
-    <div class="container-fluid" style="width: 100%;">
-        <div class="row" style="margin-left:15%">
-
-            <div class="appanswer">
-              
-                <div class="col-xs-4 common-right shake" id="firstques"><h3>Willful Misconduct</h3>
-                </div>
-                <div class="col-xs-4 common-right response-default res-cursor" id="firstresponse"><h3>Disciplining</h3>
-                </div>
-
-                <div class="clearfix cleardiv"></div>
-
-                <div class="col-xs-4 common-right" id="secondques"><h3>‘Due Care’ Violation</h3>
-                </div>
-                <div class="col-xs-4 common-right response-default res-cursor" id="secondresponse"><h3>Remediation</h3>
-                </div>
-            
-                 <div class="clearfix cleardiv"></div>
-                
-
-                <div class="col-xs-4 common-right" id="thirdques"><h3>Avoidable Error</h3>
-                </div>
-                <div class="col-xs-4 common-right response-default res-cursor" id="thirdresponse"><h3>Acceptance</h3>
-                </div>
-            
-
-                 <div class="clearfix cleardiv"></div>
-                
-
-                <div class="col-xs-4 common-right" id="fourthques"><h3>Human <br>Error</h3>
-                </div>
+		<div class="col-xs-4 common-ques" id="ques_1"></div>
+		<div class="clearfix"></div>
+		<div class="col-xs-4 common-ques" id="ques_2"></div>
+		<div class="clearfix"></div>
+		<div class="col-xs-4 common-ques" id="ques_3"></div>
+		<div class="clearfix"></div>
+		<div class="col-xs-4 common-ques" id="ques_4"></div>
+		</div>
 
 
 
-
-
-               
-
-
-                      <div style="display:none;" class="col-xs-4 popup" id="hefeedback1">
-                      <p>Not quite! Disciplining of the individual involved is not the best response for a Human Error.Try again.</p>
-                      </div>
-                      <div  style="display:none;" class="col-xs-4 popup" id="hefeedback2">
-                        <p>Not quite! Implementing a new remedy is not the best response for a Human Error.Try again.</p>
-                      </div>
-                      <div style="display:none;" class="col-xs-4 popup"  id="hefeedback3">
-                        <p>Well done! A Human Error should be accepted as a natural and common part of work. No further analysis or corrective actions are necessary with this type of error.Click X to close this box and continue.</p>
-                      </div>
-
-                      <div style="display:none;" class="col-xs-4 popup"  id="aefeedback1">
-                        <p>Not quite! Disciplining of the individual involved is not the best response for an Avoidable Error.Try again.</p>
-                      </div>
-                      <div style="display:none;" class="col-xs-4 popup"  id="aefeedback2">
-                        <p>Well done! An Avoidable Error can be prevented from happening again through management analysis and putting a remedy in place to fix the problem.Click X to close this box and continue.</p>
-                      </div>
-                      <div style="display:none;" class="col-xs-4 popup" id="aefeedback3">
-                        <p>Not quite! Acceptance is not the best response for an Avoidable Error.Try again.</p>
-                      </div>
-
-                      <div style="display:none;" class="col-xs-4 popup" id="dcfeedback1">
-                        <p>Not quite! Disciplining of the individual involved is not the best response for a ‘Due Care’ Violation.Try again.</p>
-                      </div>
-                      <div style="display:none;" class="col-xs-4 popup" id="dcfeedback2">
-                        <p>Well done! Remediation and management analysis are the best response to a ‘Due Care’ Violation. A similar mistake could be prevented in the future by taking corrective action such as modified processes or additional training. Click X to close this box and continue.</p>
-                      </div>
-                      <div style="display:none;" class="col-xs-4 popup" id="dcfeedback3">
-                        <p>Not quite! Acceptance is not the best response for a ‘Due Care’ Violation.Try again.</p>
-                      </div>
-
-                      <div style="display:none;" class="col-xs-4 popup" id="wmfeedback1">
-                        <p>Well done! When a mistake is caused by an individual purposefully committing a course of action they know is wrong, disciplining, along with management analysis, is the most appropriate response.Click X to close this box and continue.</p>
-                      </div>
-                      <div style="display:none;" class="col-xs-4 popup" id="wmfeedback2">
-                        <p>Not quite! Implementing a new remedy is not the best response to Willful Misconduct.Try again.</p>
-                      </div>
-                      <div style="display:none;" class="col-xs-4 popup" id="wmfeedback3">
-                        <p>Not quite! Acceptance is not the best response to Willful Misconduct.Try again.</p>
-                      </div>
-                      
-                
-            
-
-
-
-
-                
-
-            </div>
-            
-        </div>
-    </div>
 </body>
 
 <script>
 
- $(document).ready(function(){
+	$(document).ready(function(){
 
-// Willful Misconduct
-            $("#firstresponse").click(function(){
-                if ( $('#firstques').hasClass("shake") ){
-                    $('#firstques').removeClass('shake');
-                    $('#wmfeedback1').show(400);
-                    $("#firstresponse, #secondresponse, #thirdresponse").removeClass('res-cursor');
-                }                 
-             });
+		var my_title = [];	
+		var my_title_data = [];
+		var my_title_data_ans = [];
 
-            $("#secondresponse").click(function(){
-                 if ( $('#firstques').hasClass("shake") ){
-                    $('#firstques').removeClass('shake');
-                    $('#wmfeedback2').show(400);
-                    $("#firstresponse, #secondresponse, #thirdresponse").removeClass('res-cursor');
-                 }
-            });
+		i = 1;
 
-            $("#thirdresponse").click(function(){
-                 if ( $('#firstques').hasClass("shake") ){
-                    $('#firstques').removeClass('shake');
-                    $('#wmfeedback3').show(400);
-                    $("#firstresponse, #secondresponse, #thirdresponse").removeClass('res-cursor');
-                 }
-            });
+		var configuration = {
+			"tile1": [{
+				"title": "Human Error",
+				"parts": [{
+					"title": "Disciplining",
+					"feedback": "Not quite! Disciplining of the individual involved is not the best response for a Human Error.Try again."
+				}, {
+					"title": "Remediation",
+					"feedback": "Not quite! Implementing a new remedy is not the best response for a Human Error."
+				}, {
+					"title": "Acceptance",
+					"feedback": "Well done! A Human Error should be accepted as a natural and common part of work. No further analysis or corrective actions are necessary with this type of error."
+				}]
+			}],
 
-             $("#wmfeedback1, #wmfeedback2, #wmfeedback3").click(function(){
-                   $('#secondques').addClass('shake');
-                   $('#wmfeedback1, #wmfeedback2, #wmfeedback3').hide(400);
-                   $("#firstresponse, #secondresponse, #thirdresponse").addClass('res-cursor');  
-            });
+			"tile2": [{
+				"title": "Avoidable Error",
+				"parts": [{
+					"title": "Disciplining",
+					"feedback": "Not quite! Disciplining of the individual involved is not the best response for an Avoidable Error."
+				}, {
+					"title": "Remediation",
+					"feedback": "Well done! An Avoidable Error can be prevented from happening again through management analysis and putting a remedy in place to fix the problem."
+				}, {
+					"title": "Acceptance",
+					"feedback": "Not quite! Acceptance is not the best response for an Avoidable Error."
+				}]
+			}],
 
+			"tile3": [{
+				"title": "‘Due Care’ Violation",
+				"parts": [{
+					"title": "Disciplining",
+					"feedback": "Not quite! Disciplining of the individual involved is not the best response for a ‘Due Care’ Violation."
+				}, {
+					"title": "Remediation",
+					"feedback": "Well done! Remediation and management analysis are the best response to a ‘Due Care’ Violation. A similar mistake could be prevented in the future by taking corrective action such as modified processes or additional training."
+				}, {
+					"title": "Acceptance",
+					"feedback": "Not quite! Acceptance is not the best response for a ‘Due Care’ Violation."
+				}]
+			}],
 
-//Due care Violation
+			"tile4": [{
+				"title": "Willful Misconduct",
+				"parts": [{
+					"title": "Disciplining",
+					"feedback": "Well done! When a mistake is caused by an individual purposefully committing a course of action they know is wrong, disciplining, along with management analysis, is the most appropriate response."
+				}, {
+					"title": "Remediation",
+					"feedback": "Not quite! Implementing a new remedy is not the best response to Willful Misconduct."
+				}, {
+					"title": "Acceptance",
+					"feedback": "Not quite! Acceptance is not the best response to Willful Misconduct."
+				}]
+				}]
+			
 
-             $("#firstresponse").click(function(){
-                if ( $('#secondques').hasClass("shake") ) {
-                    $('#secondques').removeClass('shake');
-                    $('#dcfeedback1').show(400);
-                    $("#firstresponse, #secondresponse, #thirdresponse").removeClass('res-cursor');
-                } 
-             });
+		}
 
+			i = 0;
+			j = 0;
 
-            $("#secondresponse").click(function(){
-                 if ( $('#secondques').hasClass("shake") ){
-                    $('#secondques').removeClass('shake');
-                    $('#dcfeedback2').show(400);
-                    $("#firstresponse, #secondresponse, #thirdresponse").removeClass('res-cursor');
-                 }
-            });
+			console.log(configuration.length);
+		
+		for(var key in configuration){
+			my_title[i]='<h2>' + configuration[key][0]["title"] + '</h2>';
+			for(j=0;j<3;j++){
+				my_title_data[i,j] = '<p>' + configuration[key][0]["parts"][j]["title"] + '</p>'
+				my_title_data_ans[i,j] = '<p>' + configuration[key][0]["parts"][j]["feedback"] + '</p>'
+				console.log(my_title[i]);
+				console.log(my_title_data[i,j]);
+				console.log(my_title_data_ans[i,j]);
+			}
+			i++;
+		}
 
-            $("#thirdresponse").click(function(){
-                 if ( $('#secondques').hasClass("shake") ){
-                    $('#secondques').removeClass('shake');
-                    $('#dcfeedback3').show(400);
-                    $("#firstresponse, #secondresponse, #thirdresponse").removeClass('res-cursor');
-                 } 
-            });
+		$("#ques_1").append(my_title[0]);
+		$("#ques_2").append(my_title[1]);
+		$("#ques_3").append(my_title[2]);
+		$("#ques_4").append(my_title[3]);	
 
-             $("#dcfeedback1, #dcfeedback2, #dcfeedback3").click(function(){
-                   $('#thirdques').addClass('shake');
-                   $('#dcfeedback1, #dcfeedback2, #dcfeedback3').hide(400);
-                   $("#firstresponse, #secondresponse, #thirdresponse").addClass('res-cursor');   
-            });
-
-
-
-
-// Avoidable Error
-
-             $("#firstresponse").click(function(){
-                if ( $('#thirdques').hasClass("shake") ) {
-                    $('#thirdques').removeClass('shake');
-                    $('#aefeedback1').show(400);
-                    $("#firstresponse, #secondresponse, #thirdresponse").removeClass('res-cursor');
-                } 
-             });
-
-            $("#secondresponse").click(function(){
-                 if ( $('#thirdques').hasClass("shake") ){
-                    $('#thirdques').removeClass('shake');
-                    $('#aefeedback2').show(400);
-                    $("#firstresponse, #secondresponse, #thirdresponse").removeClass('res-cursor');
-                 }
-            });
-
-            $("#thirdresponse").click(function(){
-                 if ( $('#thirdques').hasClass("shake") ){
-                    $('#thirdques').removeClass('shake');
-                    $('#aefeedback3').show(400);
-                    $("#firstresponse, #secondresponse, #thirdresponse").removeClass('res-cursor');
-                 } 
-            });
-
-             $("#aefeedback1, #aefeedback2, #aefeedback3").click(function(){
-                   $('#fourthques').addClass('shake');
-                   $('#aefeedback1, #aefeedback2, #aefeedback3').hide(400);
-                   $("#firstresponse, #secondresponse, #thirdresponse").addClass('res-cursor');   
-            });
-
-
-//Human Error
-
-            $("#firstresponse").click(function(){
-                if ( $('#fourthques').hasClass("shake") ) {
-                    $('#fourthques').removeClass('shake');
-                    $('#hefeedback1').show(400);
-                    $("#firstresponse, #secondresponse, #thirdresponse").removeClass('res-cursor');
-                } 
-             });
-
-            $("#secondresponse").click(function(){
-                 if ( $('#fourthques').hasClass("shake") ){
-                    $('#fourthques').removeClass('shake');
-                    $('#hefeedback2').show(400);
-                    $("#firstresponse, #secondresponse, #thirdresponse").removeClass('res-cursor');
-                 }
-            });
-
-            $("#thirdresponse").click(function(){
-                 if ( $('#fourthques').hasClass("shake") ){
-                    $('#fourthques').removeClass('shake');
-                    $('#hefeedback3').show(400);
-                    $("#firstresponse, #secondresponse, #thirdresponse").removeClass('res-cursor');
-                 } 
-            });
-
-             $("#hefeedback1, #hefeedback2, #hefeedback3").click(function(){
-                   $('#hefeedback1, #hefeedback2, #hefeedback3').hide(400); 
-            });
-
-
-});
+}
+);
 
 </script>
+
+
 </html>
