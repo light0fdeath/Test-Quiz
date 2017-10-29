@@ -16,6 +16,19 @@
         background-color: grey;
         border-radius: 40px;
         margin:10px 0px 0px 10px;
+	}
+
+		.appanswer .response-default{
+        height:100px;
+        width:190px;
+        padding-top:0px;
+        color:white;
+        background-color: grey;
+        border-radius: 40px;
+        margin-top:0px;
+        margin-top: 70px;
+        margin-bottom: -70px;
+        margin-left:10%;
 
     }
 	</style>
@@ -25,10 +38,13 @@
 	<div class="appanswer">
 
 		<div class="col-xs-4 common-ques" id="ques_1"></div>
+		<div class="col-xs-4 common-ques response-default res-cursor" id="resp_1"><h2></h2></div>
 		<div class="clearfix"></div>
 		<div class="col-xs-4 common-ques" id="ques_2"></div>
+		<div class="col-xs-4 common-ques response-default res-cursor" id="resp_2"></div>
 		<div class="clearfix"></div>
 		<div class="col-xs-4 common-ques" id="ques_3"></div>
+		<div class="col-xs-4 common-ques response-default res-cursor" id="resp_3"></div>
 		<div class="clearfix"></div>
 		<div class="col-xs-4 common-ques" id="ques_4"></div>
 		</div>
@@ -115,7 +131,7 @@
 		for(var key in configuration){
 			my_title[i]='<h2>' + configuration[key][0]["title"] + '</h2>';
 			for(j=0;j<3;j++){
-				my_title_data[i,j] = '<p>' + configuration[key][0]["parts"][j]["title"] + '</p>'
+				my_title_data[i,j] = '<h2>' + configuration[key][0]["parts"][j]["title"] + '</h2>'
 				my_title_data_ans[i,j] = '<p>' + configuration[key][0]["parts"][j]["feedback"] + '</p>'
 				console.log(my_title[i]);
 				console.log(my_title_data[i,j]);
@@ -127,7 +143,11 @@
 		$("#ques_1").append(my_title[0]);
 		$("#ques_2").append(my_title[1]);
 		$("#ques_3").append(my_title[2]);
-		$("#ques_4").append(my_title[3]);	
+		$("#ques_4").append(my_title[3]);
+
+		$("#resp_1").append(my_title_data[0,0]);
+		$("#resp_2").append(my_title_data[0,1]);
+		$("#resp_3").append(my_title_data[0,2]);
 
 }
 );
