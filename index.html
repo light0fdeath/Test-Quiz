@@ -21,6 +21,9 @@
     .right-col {
         margin-top: 60px;
     }
+    h2{
+          display: inline-block !important;
+    }
 
  </style>
 </head>
@@ -67,28 +70,32 @@ $(document).ready(function(){
     var i = 0;
     var j = 0;
 
-    var contentHTML = "";
+    var LeftContentHTML = "";
+    var RightcontentHTML = "";
+    
     for(var key in configuration) {
         var leftTitle='<h2>' + configuration[key]["title"] + '</h2>';
-        contentHTML += '<div id="left-ele-' + i + '">' + leftTitle + '</div>';
+        LeftContentHTML += '<div id="left-ele-' + i + '">' + leftTitle + '</div>';
 
         var parts = configuration[key]["parts"];
 
-        console.log(parts.length);
         for(j=0;j<parts.length;j++){
-            my_title_data[i,j] = '<h2>' + parts[j]["title"] + '</h2>';
+
             my_title_data_ans[i,j] = '<p>' + parts[j]["feedback"] + '</p>';
+
             var rightTitle = '<h2>' + parts[j]["title"] + '</h2>';
 
-            contentHTML += '<div id="right-ele-' + j +'"><h2>' + rightTitle + '</h2></div>';
+            RightcontentHTML += '<div id="right-ele-' + j +'">' + rightTitle + '</div>';
 
             //console.log(my_title[i]);
             //console.log(my_title_data[i,j]);
             //console.log(my_title_data_ans[i,j]);
         }
+        i++;
 
     }
-    $(".left-col").html(contentHTML);
+    $(".left-col").html(LeftContentHTML);
+    $(".right-col").html(RightcontentHTML);
 }
 );
 </script>
