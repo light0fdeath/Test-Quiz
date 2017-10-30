@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Test</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>  
+ <title>Test</title>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script src="config.js"></script>
 
-	<style>
-		.appanswer .common-ques{
+ <style>
+    .left-col div, .right-col div{
         height:100px;
         width:190px;
         padding-top:0px;
@@ -16,38 +16,41 @@
         background-color: grey;
         border-radius: 40px;
         margin:10px 0px 0px 10px;
-	}
-
-		.appanswer .response-default{
-        height:100px;
-        width:190px;
-        padding-top:0px;
-        color:white;
-        background-color: grey;
-        border-radius: 40px;
-        margin-top:0px;
-        margin-top: 70px;
-        margin-bottom: -70px;
-        margin-left:10%;
-
     }
-	</style>
+
+    .right-col {
+        margin-top: 60px;
+    }
+
+ </style>
 </head>
 <body>
 
-	<div class="appanswer">
+<div class="appanswer" id="content-question">
 
-		<div class="col-xs-4 common-ques" id="ques_1"></div>
-		<div class="col-xs-4 common-ques response-default res-cursor" id="resp_1"><h2></h2></div>
-		<div class="clearfix"></div>
-		<div class="col-xs-4 common-ques" id="ques_2"></div>
-		<div class="col-xs-4 common-ques response-default res-cursor" id="resp_2"></div>
-		<div class="clearfix"></div>
-		<div class="col-xs-4 common-ques" id="ques_3"></div>
-		<div class="col-xs-4 common-ques response-default res-cursor" id="resp_3"></div>
-		<div class="clearfix"></div>
-		<div class="col-xs-4 common-ques" id="ques_4"></div>
-		</div>
+    <div class="col-xs-4">
+        <div class="left-col">
+<!--         <div id="left-ele-1"></div>
+            <div id="left-ele-2"></div>
+            <div id="left-ele-3"></div>
+            <div id="left-ele-4"></div>
+
+        -->
+        </div>
+    </div> 
+    <div class="col-xs-4">
+        <div class="right-col">
+            <!--  
+            <div class="right-ele" id="right-ele-1"></div>
+            <div class="right-ele" id="right-ele-2"></div>
+            <div class="right-ele" id="right-ele-3"></div>
+            -->
+        </div>
+    </div>
+    <div class="col-xs-4">
+    </div>
+
+</div>
 
 
 
@@ -55,104 +58,41 @@
 
 <script>
 
-	$(document).ready(function(){
+var currentTracking;
+$(document).ready(function(){
+    
+    var my_title_data = [];
+    var my_title_data_ans = [];
 
-		var my_title = [];	
-		var my_title_data = [];
-		var my_title_data_ans = [];
+    var i = 0;
+    var j = 0;
 
-		i = 1;
+    var contentHTML = "";
+    for(var key in configuration) {
+        var leftTitle='<h2>' + configuration[key]["title"] + '</h2>';
+        contentHTML += '<div id="left-ele-' + i + '">' + leftTitle + '</div>';
 
-		var configuration = {
-			"tile1": [{
-				"title": "Human Error",
-				"parts": [{
-					"title": "Disciplining",
-					"feedback": "Not quite! Disciplining of the individual involved is not the best response for a Human Error.Try again."
-				}, {
-					"title": "Remediation",
-					"feedback": "Not quite! Implementing a new remedy is not the best response for a Human Error."
-				}, {
-					"title": "Acceptance",
-					"feedback": "Well done! A Human Error should be accepted as a natural and common part of work. No further analysis or corrective actions are necessary with this type of error."
-				}]
-			}],
+        var parts = configuration[key]["parts"];
 
-			"tile2": [{
-				"title": "Avoidable Error",
-				"parts": [{
-					"title": "Disciplining",
-					"feedback": "Not quite! Disciplining of the individual involved is not the best response for an Avoidable Error."
-				}, {
-					"title": "Remediation",
-					"feedback": "Well done! An Avoidable Error can be prevented from happening again through management analysis and putting a remedy in place to fix the problem."
-				}, {
-					"title": "Acceptance",
-					"feedback": "Not quite! Acceptance is not the best response for an Avoidable Error."
-				}]
-			}],
+        console.log(parts.length);
+        for(j=0;j<parts.length;j++){
+            my_title_data[i,j] = '<h2>' + parts[j]["title"] + '</h2>';
+            my_title_data_ans[i,j] = '<p>' + parts[j]["feedback"] + '</p>';
+            var rightTitle = '<h2>' + parts[j]["title"] + '</h2>';
 
-			"tile3": [{
-				"title": "‘Due Care’ Violation",
-				"parts": [{
-					"title": "Disciplining",
-					"feedback": "Not quite! Disciplining of the individual involved is not the best response for a ‘Due Care’ Violation."
-				}, {
-					"title": "Remediation",
-					"feedback": "Well done! Remediation and management analysis are the best response to a ‘Due Care’ Violation. A similar mistake could be prevented in the future by taking corrective action such as modified processes or additional training."
-				}, {
-					"title": "Acceptance",
-					"feedback": "Not quite! Acceptance is not the best response for a ‘Due Care’ Violation."
-				}]
-			}],
+            contentHTML += '<div id="right-ele-' + j +'"><h2>' + rightTitle + '</h2></div>';
 
-			"tile4": [{
-				"title": "Willful Misconduct",
-				"parts": [{
-					"title": "Disciplining",
-					"feedback": "Well done! When a mistake is caused by an individual purposefully committing a course of action they know is wrong, disciplining, along with management analysis, is the most appropriate response."
-				}, {
-					"title": "Remediation",
-					"feedback": "Not quite! Implementing a new remedy is not the best response to Willful Misconduct."
-				}, {
-					"title": "Acceptance",
-					"feedback": "Not quite! Acceptance is not the best response to Willful Misconduct."
-				}]
-				}]
-			
+            //console.log(my_title[i]);
+            //console.log(my_title_data[i,j]);
+            //console.log(my_title_data_ans[i,j]);
+        }
 
-		}
-
-			i = 0;
-			j = 0;
-
-			console.log(configuration.length);
-		
-		for(var key in configuration){
-			my_title[i]='<h2>' + configuration[key][0]["title"] + '</h2>';
-			for(j=0;j<3;j++){
-				my_title_data[i,j] = '<h2>' + configuration[key][0]["parts"][j]["title"] + '</h2>'
-				my_title_data_ans[i,j] = '<p>' + configuration[key][0]["parts"][j]["feedback"] + '</p>'
-				console.log(my_title[i]);
-				console.log(my_title_data[i,j]);
-				console.log(my_title_data_ans[i,j]);
-			}
-			i++;
-		}
-
-		$("#ques_1").append(my_title[0]);
-		$("#ques_2").append(my_title[1]);
-		$("#ques_3").append(my_title[2]);
-		$("#ques_4").append(my_title[3]);
-
-		$("#resp_1").append(my_title_data[0,0]);
-		$("#resp_2").append(my_title_data[0,1]);
-		$("#resp_3").append(my_title_data[0,2]);
-
+    }
+    $(".left-col").html(contentHTML);
 }
 );
-
 </script>
+
 
 
 </html>
