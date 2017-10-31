@@ -62,6 +62,8 @@
 <script>
 
 var currentTracking;
+var indexVal;
+var leftTracking;
 $(document).ready(function(){
     
     var my_title_data = [];
@@ -72,13 +74,21 @@ $(document).ready(function(){
 
     var LeftContentHTML = "";
     var RightcontentHTML = "";
+
+    loadQuestion(0);
+
+    function loadQuestion(indexVal) {
     
-    for(var key in configuration) {
+
+
+   for(var key in configuration) {
+        var keyz = "tile"+(indexVal+1);
         var leftTitle='<h2>' + configuration[key]["title"] + '</h2>';
         LeftContentHTML += '<div id="left-ele-' + i + '">' + leftTitle + '</div>';
 
         var parts = configuration[key]["parts"];
 
+        if(keyz==key){
         for(j=0;j<parts.length;j++){
 
             my_title_data_ans[i,j] = '<p>' + parts[j]["feedback"] + '</p>';
@@ -91,11 +101,26 @@ $(document).ready(function(){
             //console.log(my_title_data[i,j]);
             //console.log(my_title_data_ans[i,j]);
         }
+        }
         i++;
 
-    }
+     }
+     leftTracking = indexVal;
+
+}
     $(".left-col").html(LeftContentHTML);
     $(".right-col").html(RightcontentHTML);
+
+    $(".right-col div").click(function(e) {
+        var id = this.id.replace("right-ele-","");
+    // loadQuestion(currentTracking);
+        console.log(id);
+
+        
+
+    });
+    currentTracking = indexVal;
+
 }
 );
 </script>
