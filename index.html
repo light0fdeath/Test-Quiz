@@ -5,82 +5,7 @@
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  <script src="config.js"></script>
-
- <style>
-    .left-col div, .right-col div{
-        height:100px;
-        width:190px;
-        padding-top:0px;
-        color:white;
-        text-align:center;
-        background-color: grey;
-        border-radius: 40px;
-        margin:10px 0px 0px 10px;
-    }
-
-    .right-col {
-        margin-top: 60px;
-    }
-    h2{
-          display: inline-block !important;
-    }
-
-
-    @-webkit-keyframes wiggle
-    {
-        0% {-webkit-transform: rotateZ(2deg);}
-        50% {-webkit-transform: rotateZ(-2deg);}
-        100% {-webkit-transform: rotateZ(2deg);}
-    }
-    @-moz-keyframes wiggle
-    {
-        0% {-moz-transform: rotateZ(2deg);}
-        50% {-moz-transform: rotateZ(-2deg);}
-        100% {-moz-transform: rotateZ(2deg);}
-    }
-    @-o-keyframes wiggle
-    {
-        0% {-o-transform: rotateZ(2deg);}
-        50% {-o-transform: rotateZ(-2deg);}
-        100% {-o-transform: rotateZ(2deg);}
-    }
-    @keyframes wiggle
-    {
-        0% {transform: rotateZ(2deg);}
-        50% {transform: rotateZ(-2deg);}
-        100% {transform: rotateZ(2deg);}
-    }
-
-
-    .appanswer .col-xs-4 .left-col .shake{
-        -webkit-animation: wiggle 0.2s ease infinite;
-        -moz-animation: wiggle 0.2s ease infinite;
-        -o-animation: wiggle 0.2s ease infinite;
-        animation: wiggle 0.2s ease infinite;
-    }
-
-    .appanswer .col-xs-4 .feedback-col .feedback{
-        margin-top:130px;
-        height:220px;
-        padding:15px 15px 0 15px;
-        border:1px solid brown;
-        border-radius: 20px;
-    }
-   .appanswer .col-xs-4 .feedback-col .fbutton{
-    height:40px;
-    width:100px;
-    text-align: center;
-    border:3px solid red;
-    margin-left: 45px;
-    margin-top:5px;
-    font-weight: bold;
-    font-size: 25px;
-    border-radius: 10px;
-    cursor: pointer;
-   }
-
-
- </style>
+ <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -118,62 +43,26 @@
 
 <script>
 
-var currentTracking;
+var currentTracking=0;
 var indexVal= 0;
 var leftTracking;
 $(document).ready(function(){
-    
-    var my_title_data = [];
-    var my_title_data_ans = [];
 
-    var i = 0;
-    var j = 0;
 
-    var LeftContentHTML = "";
-    var RightContentHTML = "";
+    loadQuestion(currentTracking);
 
-    loadQuestion(0);
+});
 
-    function loadQuestion(indexVal) {
 
-    for(var key in configuration) {
-        var keyz = "tile"+(indexVal+1);
-        var leftTitle='<h2>' + configuration[key]["title"] + '</h2>';
-        LeftContentHTML += '<div id="left-ele-' + i + '">' + leftTitle + '</div>';
-
-        var parts = configuration[key]["parts"];
-
-        if(keyz==key){
-        for(j=0;j<parts.length;j++){
-
-            my_title_data_ans[i,j] = '<p>' + parts[j]["feedback"] + '</p>';
-
-            var rightTitle = '<h2>' + parts[j]["title"] + '</h2>';
-
-            RightContentHTML += '<div id="right-ele-' + j +'">' + rightTitle + '</div>';
-
-            //console.log(my_title[i]);
-            //console.log(my_title_data[i,j]);
-            //console.log(my_title_data_ans[i,j]);
-        }
-        }
-        i++;
-
-     }
-     leftTracking = indexVal;
-
-}
-    $(".left-col").html(LeftContentHTML);
-    $(".left-col div:nth-child(1)").addClass('shake');
-    $(".right-col").html(RightContentHTML);
+function addMouseEvent() {
 
     $(".right-col div").click(function(e) {
         var id = this.id.replace("right-ele-","");
     // loadQuestion(currentTracking);
 
-        var kdata = "tile"+(indexVal+1);
+        var kdata = "tile"+(leftTracking+1);
         var feedTitle = configuration[kdata]["parts"][id]["feedback"]
-        var fbutton = '<div class="fbutton">' + "Close" +'</div>';
+        var fbutton = '<button class="fbutton">' + "Close" +'</button>';
         var FeedContentHTML = '<div class="feedback" id="feedback-ele' + indexVal + '">' + feedTitle + '</div>';
         FeedContentHTML += fbutton;
 
@@ -181,34 +70,61 @@ $(document).ready(function(){
 
         console.log(leftTracking);
 
-        $(".fbutton").click(function()
-        {
-            currentTracking ++;
-            loadQuestion(currentTracking);
-            console.log("Hi");
-            console.log(currentTracking);
-        }
-        );
-
-
-       
-
-    //  console.log(FeedContentHTML);
-    //  console.log(id);
-
-        indexVal ++;
+			
+		$(".fbutton").click(function()
+		{
+			currentTracking++;
+			loadQuestion(currentTracking);
+			console.log("Tracking Index", currentTracking);
+			$(".feedback-col").empty();
+		});
 
     });
-
-
-    currentTracking = indexVal;
-
-
 }
 
 
+function loadQuestion(indexVal) {
+	console.log('question loaded ' + indexVal);
+	
+    var i = 0;
+    var j = 0;
 
-);
+    var LeftContentHTML = "";
+    var RightContentHTML = "";
+
+	    
+    var my_title_data = [];
+    var my_title_data_ans = [];
+	
+    for(var key in configuration) {
+        var keyz = "tile"+(indexVal+1);
+		console.log(keyz);
+        var leftTitle='<h2>' + configuration[key]["title"] + '</h2>';
+        LeftContentHTML += '<div id="left-ele-' + i + '">' + leftTitle + '</div>';
+        var parts = configuration[key]["parts"];
+
+        if(keyz==key){
+			for(j=0;j<parts.length;j++){
+				my_title_data_ans[i,j] = '<p>' + parts[j]["feedback"] + '</p>';
+				var rightTitle = '<h2>' + parts[j]["title"] + '</h2>';
+				RightContentHTML += '<div id="right-ele-' + j +'">' + rightTitle + '</div>';
+				//console.log(my_title[i]);
+				//console.log(my_title_data[i,j]);
+				//console.log(my_title_data_ans[i,j]);
+			}
+        }
+        i++;
+
+	}
+	leftTracking = indexVal;
+	
+    $(".left-col").html(LeftContentHTML);
+    $(".left-col div:nth-child(" + (indexVal+1) + ")").addClass('shake');
+    $(".right-col").html(RightContentHTML);
+	
+	addMouseEvent();
+
+}
 </script>
 
 
