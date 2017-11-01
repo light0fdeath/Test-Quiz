@@ -25,6 +25,61 @@
           display: inline-block !important;
     }
 
+
+    @-webkit-keyframes wiggle
+    {
+        0% {-webkit-transform: rotateZ(2deg);}
+        50% {-webkit-transform: rotateZ(-2deg);}
+        100% {-webkit-transform: rotateZ(2deg);}
+    }
+    @-moz-keyframes wiggle
+    {
+        0% {-moz-transform: rotateZ(2deg);}
+        50% {-moz-transform: rotateZ(-2deg);}
+        100% {-moz-transform: rotateZ(2deg);}
+    }
+    @-o-keyframes wiggle
+    {
+        0% {-o-transform: rotateZ(2deg);}
+        50% {-o-transform: rotateZ(-2deg);}
+        100% {-o-transform: rotateZ(2deg);}
+    }
+    @keyframes wiggle
+    {
+        0% {transform: rotateZ(2deg);}
+        50% {transform: rotateZ(-2deg);}
+        100% {transform: rotateZ(2deg);}
+    }
+
+
+    .appanswer .col-xs-4 .left-col .shake{
+        -webkit-animation: wiggle 0.2s ease infinite;
+        -moz-animation: wiggle 0.2s ease infinite;
+        -o-animation: wiggle 0.2s ease infinite;
+        animation: wiggle 0.2s ease infinite;
+    }
+
+    .appanswer .col-xs-4 .feedback-col .feedback{
+        margin-top:130px;
+        height:220px;
+        padding:15px 15px 0 15px;
+        border:1px solid brown;
+        border-radius: 20px;
+    }
+   .appanswer .col-xs-4 .feedback-col .fbutton{
+    height:40px;
+    width:100px;
+    text-align: center;
+    border:3px solid red;
+    margin-left: 45px;
+    margin-top:5px;
+    font-weight: bold;
+    font-size: 25px;
+    border-radius: 10px;
+    cursor: pointer;
+   }
+
+
  </style>
 </head>
 <body>
@@ -50,7 +105,9 @@
             -->
         </div>
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-4" >
+        <div class="feedback-col">
+        </div>
     </div>
 
 </div>
@@ -62,7 +119,7 @@
 <script>
 
 var currentTracking;
-var indexVal;
+var indexVal= 0;
 var leftTracking;
 $(document).ready(function(){
     
@@ -73,15 +130,13 @@ $(document).ready(function(){
     var j = 0;
 
     var LeftContentHTML = "";
-    var RightcontentHTML = "";
+    var RightContentHTML = "";
 
     loadQuestion(0);
 
     function loadQuestion(indexVal) {
-    
 
-
-   for(var key in configuration) {
+    for(var key in configuration) {
         var keyz = "tile"+(indexVal+1);
         var leftTitle='<h2>' + configuration[key]["title"] + '</h2>';
         LeftContentHTML += '<div id="left-ele-' + i + '">' + leftTitle + '</div>';
@@ -95,7 +150,7 @@ $(document).ready(function(){
 
             var rightTitle = '<h2>' + parts[j]["title"] + '</h2>';
 
-            RightcontentHTML += '<div id="right-ele-' + j +'">' + rightTitle + '</div>';
+            RightContentHTML += '<div id="right-ele-' + j +'">' + rightTitle + '</div>';
 
             //console.log(my_title[i]);
             //console.log(my_title_data[i,j]);
@@ -109,19 +164,50 @@ $(document).ready(function(){
 
 }
     $(".left-col").html(LeftContentHTML);
-    $(".right-col").html(RightcontentHTML);
+    $(".left-col div:nth-child(1)").addClass('shake');
+    $(".right-col").html(RightContentHTML);
 
     $(".right-col div").click(function(e) {
         var id = this.id.replace("right-ele-","");
     // loadQuestion(currentTracking);
-        console.log(id);
 
-        
+        var kdata = "tile"+(indexVal+1);
+        var feedTitle = configuration[kdata]["parts"][id]["feedback"]
+        var fbutton = '<div class="fbutton">' + "Close" +'</div>';
+        var FeedContentHTML = '<div class="feedback" id="feedback-ele' + indexVal + '">' + feedTitle + '</div>';
+        FeedContentHTML += fbutton;
+
+        $(".feedback-col").html(FeedContentHTML);
+
+        console.log(leftTracking);
+
+        $(".fbutton").click(function()
+        {
+            currentTracking ++;
+            loadQuestion(currentTracking);
+            console.log("Hi");
+            console.log(currentTracking);
+        }
+        );
+
+
+       
+
+    //  console.log(FeedContentHTML);
+    //  console.log(id);
+
+        indexVal ++;
 
     });
+
+
     currentTracking = indexVal;
 
+
 }
+
+
+
 );
 </script>
 
