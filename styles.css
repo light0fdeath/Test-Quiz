@@ -1,6 +1,6 @@
-   .left-col div, .right-col div{
-        height:100px;
-        width:190px;
+   .appanswer .col-xs-4 .left-col div, .right-col div{
+        height:107px;
+        width:200px;
         padding-top:0px;
         color:white;
         text-align:center;
@@ -8,6 +8,15 @@
         border-radius: 40px;
         margin:10px 0px 0px 10px;
         cursor: pointer;
+        border:2px solid grey;
+    }
+
+    .appanswer .col-xs-4 .right-col .correct{
+        border:2px solid lightgreen;
+    }
+
+    .appanswer .col-xs-4 .right-col .incorrect{
+        border:2px solid red;
     }
 
     .right-col {
@@ -51,22 +60,31 @@
         animation: wiggle 0.2s ease infinite;
     }
 
+    .appanswer .col-xs-4 .feedback-col{
+        width:90%;
+    }
+
     .appanswer .col-xs-4 .feedback-col .feedback{
         margin-top:130px;
-        height:220px;
+        height:242px;
+        width:365px;
         padding:15px 15px 0 15px;
-        border:1px solid brown;
+        background-color: rgb(177, 179, 182);
+        color:white;
         border-radius: 20px;
+        font-size: 17px;
+
     }
    .appanswer .col-xs-4 .feedback-col .fbutton{
-    height:40px;
-    width:100px;
-    text-align: center;
-    border:3px solid red;
-    margin-left: 45px;
-    margin-top:5px;
-    font-weight: bold;
-    font-size: 25px;
-    border-radius: 10px;
-    cursor: pointer;
+        height:40px;
+        width:100px;
+        text-align: center;
+        border:2px solid maroon;
+        margin:auto;
+        margin-top: 15px;
+        font-size: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        color:red;
+        vertical-align: middle;
    }
