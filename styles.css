@@ -1,4 +1,14 @@
-   .appanswer .col-xs-4 .left-col div, .right-col div{
+   .col-xs-3 {
+    width: 15.5% !important;
+    }
+
+    #myCanvas {
+        position: relative;
+        z-index: -1;
+        margin-top: 10px;
+    }
+
+   .appanswer .col-xs-3 .left-col div, .right-col div{
         height:107px;
         width:200px;
         padding-top:0px;
@@ -8,15 +18,15 @@
         border-radius: 40px;
         margin:10px 0px 0px 10px;
         cursor: pointer;
-        border:2px solid grey;
+        border:3px solid grey;
     }
 
-    .appanswer .col-xs-4 .right-col .correct{
-        border:2px solid lightgreen;
+    .appanswer .col-xs-3 .right-col .correct{
+        border:3px solid lightgreen;
     }
 
-    .appanswer .col-xs-4 .right-col .incorrect{
-        border:2px solid red;
+    .appanswer .col-xs-3 .right-col .incorrect{
+        border:3px solid red;
     }
 
     .right-col {
@@ -53,18 +63,18 @@
     }
 
 
-    .appanswer .col-xs-4 .left-col .shake{
+    .appanswer .col-xs-3 .left-col .shake{
         -webkit-animation: wiggle 0.2s ease infinite;
         -moz-animation: wiggle 0.2s ease infinite;
         -o-animation: wiggle 0.2s ease infinite;
         animation: wiggle 0.2s ease infinite;
     }
 
-    .appanswer .col-xs-4 .feedback-col{
+    .appanswer .col-xs-3 .feedback-col{
         width:90%;
     }
 
-    .appanswer .col-xs-4 .feedback-col .feedback{
+    .appanswer .col-xs-3 .feedback-col .feedback{
         margin-top:130px;
         height:242px;
         width:365px;
@@ -75,7 +85,7 @@
         font-size: 17px;
 
     }
-   .appanswer .col-xs-4 .feedback-col .fbutton{
+   .appanswer .col-xs-3 .feedback-col .fbutton{
         height:40px;
         width:100px;
         text-align: center;
